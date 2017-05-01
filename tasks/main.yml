@@ -1,0 +1,8 @@
+- name: Create 00-ioncube.ini
+  file: path=/etc/php/7.0/apache2/conf.d/00-ioncube.ini state=touch
+- name: ioncube config
+  lineinfile: dest=/etc/php/7.0/apache2/conf.d/00-ioncube.ini
+              line='zend_extension = /usr/lib/php/20151012/ioncube/ioncube_loader_lin_7.0.so'
+handlers:
+- name: restart apache
+  service: name=httpd state=restarted
